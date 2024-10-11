@@ -1,13 +1,15 @@
 //console.log('Hello, World!');
-require('dotenv').config()
+require("dotenv").config();
 const express = require("express");
 const projectsRouter = require("./resources/projects/index");
 const usersRouter = require("./resources/users/index");
 
-const connectDB = require('./config/mongodb');
-
+const connectDB = require("./config/mongodb");
 
 const app = express();
+
+//Middleware
+app.use(express.json());
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
