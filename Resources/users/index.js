@@ -1,5 +1,7 @@
 const express = require("express");
 
+const adminMiddleware = require("../../middlewares/adminMiddleware");
+
 const router = express.Router();
 
 router.get("/", (request, response) => {
@@ -10,7 +12,7 @@ router.get("/login", (request, response) => {
   response.send("Login");
 });
 
-router.get("/register", (request, response) => {
+router.get("/register", adminMiddleware, (request, response) => {
   response.send("Register");
 });
 
@@ -19,7 +21,7 @@ router.get("/:id", (request, response) => {
   response.send(`User con ID ${id}`);
 });
 
-router.post("/", (request, response) => {
+router.post("/", adminMiddleware, (request, response) => {
   const body = request.body;
   console.log(body);
 
