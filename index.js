@@ -1,12 +1,13 @@
 //console.log('Hello, World!');
+require('dotenv').config()
 const express = require("express");
 const projectsRouter = require("./resources/projects/index");
 const usersRouter = require("./resources/users/index");
 
 const connectDB = require('./config/mongodb');
 
-const app = express();
 
+const app = express();
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
@@ -26,7 +27,5 @@ app.post("/crear-proyecto", (request, response) => {
 
 app.use("/projects", projectsRouter);
 app.use("/users", usersRouter);
-
-app.use('/projects', projectsRouter);
 
 connectDB();

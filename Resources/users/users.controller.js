@@ -1,0 +1,2 @@
+const GetAllUsers = (req, res) => {
+    
