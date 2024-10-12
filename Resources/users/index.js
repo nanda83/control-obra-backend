@@ -1,31 +1,18 @@
 const express = require("express");
 
 const adminMiddleware = require("../../middlewares/adminMiddleware");
+const { GetAllUsers, Register, CreateUser, Login, Id } = require("./users.controller");
 
 const router = express.Router();
 
-router.get("/", (request, response) => {
-  response.send("Listado de todos los users");
-});
+router.get("/", GetAllUsers);
 
-router.get("/login", (request, response) => {
-  response.send("Login");
-});
+router.get("/login", Login);
 
-router.get("/register", adminMiddleware, (request, response) => {
-  response.send("Register");
-});
+router.get("/register", adminMiddleware, Register);
 
-router.get("/:id", (request, response) => {
-  const { id } = request.params;
-  response.send(`User con ID ${id}`);
-});
+router.get("/:id", Id);
 
-router.post("/", adminMiddleware, (request, response) => {
-  const body = request.body;
-  console.log(body);
-
-  response.send("Create User");
-});
+router.post("/", adminMiddleware, CreateUser);
 
 module.exports = router;

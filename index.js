@@ -1,6 +1,8 @@
 //console.log('Hello, World!');
 require("dotenv").config();
 const express = require("express");
+const morgan = require("morgan");
+
 const projectsRouter = require("./resources/projects/index");
 const usersRouter = require("./resources/users/index");
 
@@ -10,6 +12,7 @@ const app = express();
 
 //Middleware
 app.use(express.json());
+app.use(morgan("dev"));
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
