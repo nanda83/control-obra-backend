@@ -9,17 +9,21 @@ const usersRouter = require("./resources/users/index");
 const connectDB = require("./config/mongodb");
 
 const app = express();
+const PORT = 3000;
 
 //Middleware
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.listen(3000, () => {
-  console.log("Listening on port 3000");
+app.listen(PORT, () => {
+  console.log(`Server Running on http://localhost:${PORT}`);
 });
 
 app.get("/", (request, response) => {
-  response.send("Hola desde aquí");
+  response.status(200).json({
+    message: "Hola desde /"
+  })
+  
 });
 
 app.get("/contacto", (request, response) => {
