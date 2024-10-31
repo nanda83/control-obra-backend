@@ -39,7 +39,7 @@ const Register = (request, response) => {
 const Id = async (request, response) => {
   const { id } = request.params;
 
-  const user = await UserModel.findById(id);
+  const user = await UserModel.findById(id).populate("projects");
 
   try {
     response.status(HttpCodes.OK).json({

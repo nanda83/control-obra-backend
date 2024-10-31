@@ -5,6 +5,7 @@ const morgan = require("morgan");
 
 const projectsRouter = require("./resources/projects/index");
 const usersRouter = require("./resources/users/index");
+const authRouter = require("./resources/auth/auth.router");
 
 const connectDB = require("./config/mongodb");
 
@@ -19,6 +20,7 @@ app.listen(PORT, () => {
   console.log(`Server Running on http://localhost:${PORT}`);
 });
 
+//Routes
 app.get("/", (request, response) => {
   response.status(200).json({
     message: "Hola desde /"
@@ -36,5 +38,6 @@ app.post("/crear-proyecto", (request, response) => {
 
 app.use("/projects", projectsRouter);
 app.use("/users", usersRouter);
+app.use("/auth", authRouter);
 
 connectDB();
